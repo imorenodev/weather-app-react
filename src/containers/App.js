@@ -1,11 +1,13 @@
 import React from 'react';
-import Navbar from './Navbar';
+import NavbarContainer from './NavbarContainer';
+import styles from '../styles';
+const { backgroundGradient } = styles;
 
 export default class App extends React.Component {
   render() {
     return (
-      <div>
-        <Navbar />
+      <div className='main-container' style={backgroundGradient}> 
+        <NavbarContainer />
         {this.props.children}
       </div>
     );
