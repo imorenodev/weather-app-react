@@ -10,7 +10,7 @@ export default (
     <Route path='/' component={App}>
       <IndexRoute component={HomeContainer} />
       <Route path='home' component={HomeContainer} />
-      <Route path='forecast' component={ForecastContainer} />
+      <Route path='forecast/:cityAndState' component={ForecastContainer} />
       <Route path='details' component={DetailsContainer} />
     </Route>
   </Router>

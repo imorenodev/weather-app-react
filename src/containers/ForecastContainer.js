@@ -13,29 +13,13 @@ const ForecastContainer = React.createClass ({
     }
   },
   componentDidMount() {
-    var query = this.props.location.query;
-
-    weatherHelpers.getWeatherInfo(query.cityAndState)
-    .then(function(sevenDayForecastList) {
-      this.setState({
-        weatherForecast: sevenDayForecastList
-      });
-    }.bind(this));
+    this.setWeatherInfoState(this.props.routeParams.cityAndState);
   },
-  componentWillReceiveProps() {
-    var query = this.props.location.query;
-
-    weatherHelpers.getWeatherInfo(query.cityAndState)
-    .then(function(sevenDayForecastList) {
-      this.setState({
-        weatherForecast: sevenDayForecastList
-      });
-    }.bind(this));
+  componentWillReceiveProps(nextProps) {
+    this.setWeatherInfoState(nextProps.routeParams.cityAndState);
   },
-  setWeatherInfoState() {
-    var query = this.props.location.query;
-
-    weatherHelpers.getWeatherInfo(query.cityAndState)
+  setWeatherInfoState(cityAndState) {
+    weatherHelpers.getWeatherInfo(cityAndState)
     .then(function(sevenDayForecastList) {
       this.setState({
         weatherForecast: sevenDayForecastList
@@ -43,9 +27,9 @@ const ForecastContainer = React.createClass ({
     }.bind(this));
   },
   render() {
-    console.log(this.props.location.query.cityAndState, this.state.weatherForecast);
-    const cityAndState = this.props.location.query.cityAndState 
-      ? this.props.location.query.cityAndState
+    console.log(this.props.params.cityAndState, this.state.weatherForecast);
+    const cityAndState = this.props.params.cityAndState 
+      ? this.props.params.cityAndState
       : 'Denville, NJ';
 
     return (

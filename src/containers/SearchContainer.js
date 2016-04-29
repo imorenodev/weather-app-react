@@ -28,10 +28,7 @@ var Search = React.createClass ({
       cityAndState: ''
     });
 
-    this.context.router.push({
-      pathname: '/forecast',
-      query: {cityAndState: cityAndState}
-    });
+    this.context.router.push('/forecast/' + cityAndState);
   },
   render() {
     return (
@@ -43,6 +40,7 @@ var Search = React.createClass ({
             onFocus={this.handleOnFocus}
             onBlur={this.handleOnBlur}
             onChange={this.handleUpdateCityState}
+            value={this.state.cityAndState}
             placeholder='ex: Denville, NJ'
           />
         </div>
