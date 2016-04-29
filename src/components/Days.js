@@ -7,7 +7,11 @@ const Days = React.createClass({
     return (
       <ul className='flex-container'>
           {this.props.forecast.map((day, index) => (
-            <Day key={index} day={day.day} iconId={day.weatherId} />
+            <Day 
+              key={index} 
+              onSelectDay={this.props.onSelectDay} 
+              day={day.day} 
+              weatherId={day.weatherId} />
           ))}
       </ul>
     );

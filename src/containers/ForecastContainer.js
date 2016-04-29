@@ -26,6 +26,18 @@ const ForecastContainer = React.createClass ({
       });
     }.bind(this));
   },
+  handleOnSelectDay(selectedDay) {
+    //find selected day in weatherForecast list and pass along to DetailsContainer
+    //as routeParams
+    const selectedDayWeather = this.state.weatherForecast.filter((day) => day.day === selectedDay)
+
+    this.context.router.push({
+      pathname: '/details/' + selectedDay,
+      state: {
+        weather: selectedDayWeather 
+      }
+    });
+  },
   render() {
     console.log(this.props.params.cityAndState, this.state.weatherForecast);
     const cityAndState = this.props.params.cityAndState 
@@ -38,7 +50,7 @@ const ForecastContainer = React.createClass ({
           {cityAndState}
         </h1>
         <div className='col-sm-12 text-center'>
-          <Days forecast={this.state.weatherForecast} />
+          <Days onSelectDay={this.handleOnSelectDay} forecast={this.state.weatherForecast} />
         </div>
       </div>
     );

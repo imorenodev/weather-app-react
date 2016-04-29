@@ -11,7 +11,7 @@ export default (
       <IndexRoute component={HomeContainer} />
       <Route path='home' component={HomeContainer} />
       <Route path='forecast/:cityAndState' component={ForecastContainer} />
-      <Route path='details' component={DetailsContainer} />
+      <Route path='details/:day' component={DetailsContainer} />
     </Route>
   </Router>
 );

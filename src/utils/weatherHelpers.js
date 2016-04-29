@@ -19,6 +19,7 @@ const sevenDayForecast = (listOfDays) => {
   return listOfDays = listOfDays.map((index) => {
     return {
       day: moment.unix(index.dt).format('dddd'),
+      date: moment.unix(index.dt).format('MMMM do, YYYY'),
       humidity: index.humidity,
       minTemp: index.temp.min,
       maxTemp: index.temp.max,
