@@ -1,12 +1,11 @@
 import React from 'react';
 import NavbarContainer from './NavbarContainer';
-import styles from '../styles';
-const { backgroundGradient } = styles;
+require('../styles/main.css');
 
 export default class App extends React.Component {
   render() {
     return (
-      <div className='main-container' style={backgroundGradient}> 
+      <div className='main-container background-gradient'> 
         <NavbarContainer />
         {this.props.children}
       </div>

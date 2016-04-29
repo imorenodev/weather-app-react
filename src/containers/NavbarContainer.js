@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Search from '../components/Search';
+import SearchContainer from '../containers/SearchContainer';
 
 const NavbarContainer = React.createClass ({
   render() {
@@ -20,7 +20,7 @@ const NavbarContainer = React.createClass ({
               </span>
             </Link>
           </div>
-          <Search classNames='pull-right' />
+          <SearchContainer classNames='pull-right' />
         </div>
       </nav>
     );
