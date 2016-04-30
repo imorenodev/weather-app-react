@@ -4,25 +4,15 @@ import moment from 'moment';
 const GOOGLE_API_KEY = 'AIzaSyB_FH2e2mYddKiXkHOIrro9foBPAeVPi8g';
 const WEATHER_API_KEY = 'e2fc329e868fb6f7fa6ff16c676d61ef';
 
-//sort API payload Monday-Sunday
-const sortForecastList = (forecastList) => {
-  let indexOfMonday = 0;
-
-  forecastList.forEach((day, index) => {
-    if (day.day === 'Monday') indexOfMonday = index;
-  });
-
-  return forecastList.slice(indexOfMonday).concat(forecastList.slice(0, indexOfMonday));
-}
 
 const sevenDayForecast = (listOfDays) => {
   return listOfDays = listOfDays.map((index) => {
     return {
       day: moment.unix(index.dt).format('dddd'),
-      date: moment.unix(index.dt).format('MMMM do, YYYY'),
+      date: moment.unix(index.dt).format('MMMM DD, YYYY'),
       humidity: index.humidity,
-      minTemp: index.temp.min,
-      maxTemp: index.temp.max,
+      minTemp: Math.floor(index.temp.min),
+      maxTemp: Math.floor(index.temp.max),
       conditions: index.weather[0].main,
       weatherId: index.weather[0].id
     }
@@ -71,6 +61,9 @@ const helpers = {
         .then(function(info) {
           return getWeather(info);
         })
+  },
+  dayIsToday: function(day) {
+    return day === moment().format('dddd');
   }
 }
 

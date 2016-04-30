@@ -34,7 +34,8 @@ const ForecastContainer = React.createClass ({
     this.context.router.push({
       pathname: '/details/' + selectedDay,
       state: {
-        weather: selectedDayWeather 
+        weather: selectedDayWeather,
+        cityAndState: this.props.routeParams.cityAndState 
       }
     });
   },

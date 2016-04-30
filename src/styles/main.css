@@ -1,4 +1,5 @@
 .background-gradient {
+  overflow-y: scroll;
   height: 100%;
   background-color: #b5d1e7;
   background-image: -webkit-linear-gradient(top, #b5d1e7, #8fdc92);
