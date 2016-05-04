@@ -3,12 +3,11 @@ import moment from 'moment';
 import { dayIsToday } from '../utils/weatherHelpers.js';
 import { Link } from 'react-router';
 
-const DetailsContainer = React.createClass ({
+class DetailsContainer extends React.Component {
   render() {
     const { day, date, conditions, humidity, maxTemp, minTemp, weatherId } = this.props.location.state.weather[0];
     const cityAndState = this.props.location.state.cityAndState;
     const today = dayIsToday(day) ? 'Today' : null;
-    console.log(cityAndState);
 
     return (
       <div className='container-fluid'>
@@ -29,6 +28,6 @@ const DetailsContainer = React.createClass ({
       </div>
     );
   }
-});
+}
 
-module.exports = DetailsContainer;
+export default DetailsContainer;

@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import SearchContainer from '../containers/SearchContainer';
 
-const NavbarContainer = React.createClass ({
+class NavbarContainer extends React.Component {
   render() {
     return (
       <nav className='navbar navbar-default' style={{margin: 0}}>
@@ -25,6 +25,6 @@ const NavbarContainer = React.createClass ({
       </nav>
     );
   }
-});
+}
 
 export default NavbarContainer;

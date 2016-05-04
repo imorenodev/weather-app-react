@@ -1,8 +1,8 @@
 import React from 'react';
 import SearchContainer from '../containers/SearchContainer';
-require('../styles/main.css');
+import '../styles/main.css';
 
-const HomeContainer = React.createClass ({
+class HomeContainer  extends React.Component {
   render() {
     return (
       <div className='container-fluid'>
@@ -19,6 +19,6 @@ const HomeContainer = React.createClass ({
       </div>
     );
   }
-});
+}
 
 export default HomeContainer;

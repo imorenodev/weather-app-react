@@ -1,31 +1,27 @@
 import React from 'react';
 import Days from '../components/Days';
-import weatherHelpers from '../utils/weatherHelpers';
-require('../styles/main.css');
+import { getWeatherInfo } from '../utils/weatherHelpers';
+import '../styles/main.css';
 
-const ForecastContainer = React.createClass ({
-  contextTypes: {
-    router: React.PropTypes.object.isRequired
-  },
-  getInitialState() {
-    return {
+class ForecastContainer extends React.Component {
+  constructor() {
+    super();
+    this.state = {
       weatherForecast: []
-    }
-  },
+    };
+  }
   componentDidMount() {
     this.setWeatherInfoState(this.props.routeParams.cityAndState);
-  },
+  }
   componentWillReceiveProps(nextProps) {
     this.setWeatherInfoState(nextProps.routeParams.cityAndState);
-  },
-  setWeatherInfoState(cityAndState) {
-    weatherHelpers.getWeatherInfo(cityAndState)
-    .then(function(sevenDayForecastList) {
-      this.setState({
-        weatherForecast: sevenDayForecastList
-      });
-    }.bind(this));
-  },
+  }
+  async setWeatherInfoState(cityAndState) {
+    const weatherForecast = await getWeatherInfo(cityAndState);
+    this.setState({
+      weatherForecast
+    });
+  }
   handleOnSelectDay(selectedDay) {
     //find selected day in weatherForecast list and pass along to DetailsContainer
     //as routeParams
@@ -38,9 +34,8 @@ const ForecastContainer = React.createClass ({
         cityAndState: this.props.routeParams.cityAndState 
       }
     });
-  },
+  }
   render() {
-    console.log(this.props.params.cityAndState, this.state.weatherForecast);
     const cityAndState = this.props.params.cityAndState 
       ? this.props.params.cityAndState
       : 'Denville, NJ';
@@ -51,11 +46,15 @@ const ForecastContainer = React.createClass ({
           {cityAndState}
         </h1>
         <div className='col-sm-12 text-center'>
-          <Days onSelectDay={this.handleOnSelectDay} forecast={this.state.weatherForecast} />
+          <Days onSelectDay={this.handleOnSelectDay.bind(this)} forecast={this.state.weatherForecast} />
         </div>
       </div>
     );
   }
-});
+}
 
-module.exports = ForecastContainer;
+ForecastContainer.contextTypes = {
+    router: React.PropTypes.object.isRequired
+}
+
+export default ForecastContainer;
